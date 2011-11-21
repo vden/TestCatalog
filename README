@@ -1,13 +1,12 @@
 To start working with project:
 
-1. pip install virtualenv
-2. mkdir TestCatalog
+1. git clone git@github.com:vden/TestCatalog.git
+2. pip install virtualenv
 3. cd TestCatalog
 4. virtualenv env --no-site-packages
 5. . env/bin/activate
 6. pip install django
-7. git clone git@github.com:vden/TestCatalog.git
 8. cd catalog
-9. copy local_settings.py.tmpl to local_settings.py and edit it in according with your settings
+9. copy local_settings.py.tmpl to local_settings.py and .gitignore.tmpl to .gitignore and edit them in according with your settings
 
 After that you can use general django development workflow: syncdb, runserver, test, etc.
