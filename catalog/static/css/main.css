@@ -28,27 +28,26 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 html {
-    height: 100%;    
+    height: 100%;
+    width: 100%;
 }
 
 body {
     line-height: 1.7em;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-family: sans, sans-serif;
+    font-size: 15px;
     color: #000;
     margin: 0 auto;
-    min-height: 100%; 
-/*    height: auto !important; */
     height: 100%;
     z-index: 0;
-    width: 1000px;
+    width: 900px;
 }
 
 .content {
 	min-height: 100%;
 	position: relative;
 	overflow: hidden;
-	z-index: 0; 
+	z-index: 0;
 }
 
 .background {
@@ -79,7 +78,9 @@ body {
 
 .right_block {
 	display: block;
-	float: right; 
+	float: right;
+    min-height: 200px;
+    background-color: #efefef;
 }
 
 .center_block {
@@ -97,21 +98,21 @@ body {
 	padding-bottom: 0;
 	right: 0;
 	width: 250px;
-	background-color: #ddd;
+	background-color: white;
 	margin-top: 110px;
-	margin-bottom: 30px; 
+	margin-bottom: 40px; 
 }
 
 .block_1 {
 	height: auto;
 	width: 250px;
-	padding-bottom: 30px;
+	padding-bottom: 40px;
 }
 
 .block_3 {
     padding-top: 1em;
 	width: 100%;
-	height: 30px;
+	height: 40px;
 	background-color: white;
 }
 
@@ -142,6 +143,10 @@ h2 {
 
 h3 {
     font-weight: bold;
+}
+
+h3 span {
+    font-size: 0.8em;
 }
 
 a {
@@ -181,4 +186,29 @@ a:hover {
 
 .good-main {
     font-size: 1.2em;
+}
+
+span.producer {
+    color: #666;
+}
+
+.goods-table {
+    width: 630px;
+}
+
+.goods-table thead tr th {
+    background-color: #b3bdcb;
+}
+
+.goods-table tr.even td {
+    background-color: #dde2ea;
+}
+
+.goods-table tr td {
+    margin: 0.2em;
+    padding: 0.4em;
+}
+
+div.back a:before {
+    content: "\2190 ";
 }

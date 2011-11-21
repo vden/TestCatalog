@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ shop.name }} &ndash; TestCatalog {% endblock %}
+
+{% block content %}
+
+    <h2>Магазин «{{ shop.name }}»</h2>
+
+    <h3 class="headline">Товары от {{ producers|join:", " }}.</h3>
+
+    <div class="back">
+        <a href="{% url catalog_index %}">Вернуться в каталог</a>
+    </div>
+
+
+    <div class="new-goods">
+    <h3>Все товары</h3>
+    <table class="goods-table">
+        <col/><col width="60%"/><col width="20%"/><col/>
+        <thead>
+            <tr><th>№</th><th>Товар</th><th>Производитель</th><th>Добавлен</th></tr>
+        </thead>
+        <tbody>
+            {% for good in goods %}
+               <tr class="{% cycle 'odd' 'even' %}">
+                   <td>{{ forloop.counter }}</td>
+                   <td><a href="">{{ good.good.name }}</a></td>
+                   <td><a href="">{{ good.good.producer.name }}</a></td>
+                   <td>{{ good.added|date:"d.m.Y" }}</td>
+               </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <h2>Наш адрес:</h2>
+    <div>
+    {{ shop.address }}
+    </div>
+{% endblock %}
