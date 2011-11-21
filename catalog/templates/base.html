@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>{% block title %} Test Catalog {% endblock %}</title>
+    <meta content="text/html; charset=utf-8" />
+    <link href="{{ STATIC_URL }}css/main.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <div class="top_block block_2">
+            {% include "includes/header.html" %}
+        </div>
+        <div class="background block_1">
+        </div>
+        <div class="right_block block_1">
+            <div class="content">
+                {% block sidebar %} {% endblock %}
+            </div>
+        </div>
+        <div class="bottom_block block_3">
+            {% include "includes/footer.html" %}
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
