@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="new-shops">
+       <h2>Новые магазины в каталоге:</h2>
+       <ul>
+       {% for s in shops %}
+       <li>
+          <a href="{% url shop s.id %}">{{ s.name }}</a> <span>(добавлен {{ s.added|date:"d E Y" }})</span>
+       </li>
+       {% endfor %}
+       </ul>
+   </div>
+
+   <div class="new-goods">
+       <h2>Новые поступления в магазины:</h2>
+       <ul>
+       {% for g in goods %}
+       <li>
+          <a href="{% url show_good g.good.id g.shop.id %}">{{ g.good.name }}</a> &ndash; <span><a href="{% url shop g.shop.id %}">«{{ g.shop.name }}»</a></span>
+       </li>
+       {% endfor %}
+       </ul>
+   </div>
+{% endblock %}
+
+{% block sidebar %}
+   <h2>Случайный товар</h2>
+   <div class="good">{{ random.good.name }} ({{ random.good.producer.name }})</div>
+   Можно купить в:
+   <ul>
+   {% for s in random.shops %}
+      <li><a href="{% url shop s.id %}">«{{ s.name }}»</a></li>
+   {% endfor %}
+   </ul>
+{% endblock %}

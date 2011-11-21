@@ -28,7 +28,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 STATICFILES_DIRS = (
     # for development
-    os.path.join(PROJECT_ROOT, 'static/')
+    os.path.join(PROJECT_ROOT, 'static/'),
 )
 
 STATICFILES_FINDERS = (
@@ -50,6 +50,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
+    "django.contrib.auth.context_processors.auth",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,7 +64,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'catalog.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates')
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -75,8 +76,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    # 3rd party
+    "south",
+
     # local apps
-    'core'
+    'core',
 )
 
 FIXTURE_DIRS = (
