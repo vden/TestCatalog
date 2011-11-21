@@ -6,6 +6,7 @@ To start working with project:
 4. virtualenv env --no-site-packages
 5. . env/bin/activate
 6. pip install django
+7. pip install South
 8. cd catalog
 9. copy local_settings.py.tmpl to local_settings.py and .gitignore.tmpl to .gitignore and edit them in according with your settings
 
