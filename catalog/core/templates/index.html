@@ -29,6 +29,11 @@
 {% block sidebar %}
    <h2 class="headline"><a href="{% url catalog_index %}">Перейти в каталог</a></h2>
 
+   <h2>Поиск товара</h2>
+   <form class="search" action="{% url search %}">
+       <input name="term" value="{{ term }}" placeholder="Найти товар"/>
+   </form>
+
    <h2>Случайный товар</h2>
    <div class="good">{{ random.good.name }} ({{ random.good.producer.name }})</div>
    Можно купить в:

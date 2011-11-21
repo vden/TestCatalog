@@ -67,6 +67,7 @@ def good_view(request, good_id):
     good = get_object_or_404(Good, pk=good_id)
     shops = GoodInfo.objects.filter(good = good)
 
+    # get some goods by same producer
     other_goods = Good.objects.filter(producer=good.producer)[:5]
 
     extra = {
@@ -94,3 +95,22 @@ def producer_view(request, producer_id):
         }
 
     return direct_to_template(request, "goods_by_producer.html", extra)
+
+
+def search(request):
+    term = request.GET["term"]
+
+    # term must be filled everytime
+    if not term:
+        return redirect(reverse("home"))
+
+    # for sqlite this will work as case-sensitive search
+    result = GoodInfo.objects.filter(good__name__icontains = term)
+
+    extra = {
+        "goods": result,
+        "count": len(result),
+        "term": term
+        }
+
+    return direct_to_template(request, "search.html", extra)

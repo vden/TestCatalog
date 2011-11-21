@@ -118,7 +118,7 @@ body {
 .content.footer {
     margin-top: 1em;
     border-top: 1px dashed grey;
-    width: 100%;
+    width: 100%;    
 }
 
 h1 {
@@ -223,6 +223,7 @@ div.list ul{
     list-style-type: none;
 }
 
-h2.headline {
+h2.headline,
+form.search {
     margin-bottom: 2em;
-}
+}    

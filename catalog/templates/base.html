@@ -4,9 +4,11 @@
     <title>{% block title %} Test Catalog {% endblock %}</title>
     <meta content="text/html; charset=utf-8" />
     <link href="{{ STATIC_URL }}css/main.css" type="text/css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script src="{{ STATIC_URL}}js/script.js"></script>
 </head>
 <body>
-    <div class="content" style="padding-bottom: 50px">
+    <div class="content" style="min-height: 600px">
         <div class="top_block block_2">
             {% include "includes/header.html" %}
         </div>
@@ -21,10 +23,9 @@
         {% endblock %}
         {% block content %}{% endblock %}
 
-        <div class="">
-            {% include "includes/footer.html" %}
-        </div>
-
     </div>
+
+    {% include "includes/footer.html" %}
+
 </body>
 </html>
