@@ -1,0 +1,25 @@
+*.pyc
+*.db
+local_settings.py
+*~
+*#
+
+# django-staticfiles app will collect static
+# files from all the apps into this
+# directory. Thus, it only should be filled in
+# production
+/static
+!insurance/static
+
+# media directory will be filled with dynamic static files, i.e files that were
+# added during project runtime. The files should not make their way into the
+# main repository
+/media
+
+# Env dir should contain project-specific libraries, such as django itself or DB
+# drivers
+/env
+
+.gitignore
+
+
