@@ -6,10 +6,11 @@
     <link href="{{ STATIC_URL }}css/main.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-    <div class="content">
+    <div class="content" style="padding-bottom: 50px">
         <div class="top_block block_2">
             {% include "includes/header.html" %}
         </div>
+        {% block outer_sidebar %}
         <div class="background block_1">
         </div>
         <div class="right_block block_1">
@@ -17,11 +18,13 @@
                 {% block sidebar %} {% endblock %}
             </div>
         </div>
-        <div class="bottom_block block_3">
+        {% endblock %}
+        {% block content %}{% endblock %}
+
+        <div class="">
             {% include "includes/footer.html" %}
         </div>
 
-        {% block content %}{% endblock %}
     </div>
 </body>
 </html>

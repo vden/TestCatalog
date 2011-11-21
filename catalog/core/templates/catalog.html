@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Каталог &ndash; TestCatalog {% endblock %}
+
+{% block content %}
+
+    <h2>Каталог</h2>
+
+    <div class="column">
+        <h3>Все товары</h3>
+        <ul>
+            {% for good in goods %}
+            <li>
+                <a href="{% url good good.id %}">{{ good.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="column">
+        <h3>Все магазины</h3>
+        <ul>
+            {% for shop in shops %}
+            <li>
+                <a href="{% url shop shop.id %}">«{{ shop.name }}»</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="column">
+        <h3>Все производители</h3>
+        <ul>
+            {% for producer in producers %}
+            <li>
+                <a href="{% url producer producer.id %}">{{ producer.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+{% block outer_sidebar %}
+
+{% endblock %}

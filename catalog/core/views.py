@@ -5,10 +5,12 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 from core.models import Shop, Good, GoodInfo, Producer
 
 
+@cache_page(60 * 30)
 def home(request):
     # last added shops
     last_shops = Shop.objects.order_by('-added', '-id')[:2]
@@ -32,7 +34,17 @@ def home(request):
 
 
 def index(request):
-    return redirect(reverse("home"))
+    goods = Good.objects.order_by('name').all()
+    shops = Shop.objects.order_by('-added').all()
+    producers = Producer.objects.order_by("name").all()
+
+    extra = {
+        "goods": goods,
+        "shops": shops,
+        "producers": producers
+        }
+
+    return direct_to_template(request, "catalog.html", extra)
 
 
 def shop_view(request, shop_id):
@@ -51,5 +63,34 @@ def shop_view(request, shop_id):
     return direct_to_template(request, "shop.html", extra)
 
 
-def good_in_shop(request, good_id, shop_id):
-    return HttpResponse("Ok")
+def good_view(request, good_id):
+    good = get_object_or_404(Good, pk=good_id)
+    shops = GoodInfo.objects.filter(good = good)
+
+    other_goods = Good.objects.filter(producer=good.producer)[:5]
+
+    extra = {
+        "good": good,
+        "other": other_goods,
+        "shops": shops
+        }
+
+    return direct_to_template(request, "good.html", extra)
+
+
+def producer_view(request, producer_id):
+    producer = get_object_or_404(Producer, pk=producer_id)
+
+    goods = Good.objects.filter(producer = producer)
+    # to prevent nested query
+    goods_ids = list(goods.values_list("pk", flat=True))
+
+    shops = GoodInfo.objects.filter(good__id__in = goods_ids).values_list("shop__id", "shop__name").distinct()
+
+    extra = {
+        "producer": producer,
+        "goods": goods,
+        "shops": shops
+        }
+
+    return direct_to_template(request, "goods_by_producer.html", extra)

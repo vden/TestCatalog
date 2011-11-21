@@ -9,7 +9,7 @@
     <h3 class="headline">Товары от {{ producers|join:", " }}.</h3>
 
     <div class="back">
-        <a href="{% url catalog_index %}">Вернуться в каталог</a>
+        <a href="{% url catalog_index %}">Перейти в каталог</a>
     </div>
 
 
@@ -24,8 +24,8 @@
             {% for good in goods %}
                <tr class="{% cycle 'odd' 'even' %}">
                    <td>{{ forloop.counter }}</td>
-                   <td><a href="">{{ good.good.name }}</a></td>
-                   <td><a href="">{{ good.good.producer.name }}</a></td>
+                   <td><a href="{% url good good.good.id %}">{{ good.good.name }}</a></td>
+                   <td><a href="{% url producer good.good.producer.id %}">{{ good.good.producer.name }}</a></td>
                    <td>{{ good.added|date:"d.m.Y" }}</td>
                </tr>
             {% endfor %}

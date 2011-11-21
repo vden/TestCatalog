@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ producer.name }} &ndash; TestCatalog {% endblock %}
+
+{% block content %}
+
+    <h2>Производитель {{ producer.name }}</h2>
+
+    <div class="back">
+        <a href="{% url catalog_index %}">Перейти в каталог</a>
+    </div>
+
+
+    <div class="new-goods">
+    <h3>Все товары</h3>
+    <table class="goods-table">
+        <col width="5%"/><col/>
+        <thead>
+            <tr><th>№</th><th>Товар</th></tr>
+        </thead>
+        <tbody>
+            {% for good in goods %}
+               <tr class="{% cycle 'odd' 'even' %}">
+                   <td>{{ forloop.counter }}</td>
+                   <td><a href="{% url good good.id %}">{{ good.name }}</a></td>
+               </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% if shops %}
+    <h3>Эти товары можно купить в магазинах:</h3>
+    {% for shop in shops %}
+        <a href="{% url shop shop.0 %}">{{ shop.1 }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    {% endif %}
+{% endblock %}

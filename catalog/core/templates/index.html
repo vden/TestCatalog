@@ -19,7 +19,7 @@
        <ul>
        {% for g in goods %}
        <li>
-          <a href="{% url show_good g.good.id g.shop.id %}">{{ g.good.name }}</a> <span class="producer">({{ g.good.producer.name }})</span> &ndash; <span><a href="{% url shop g.shop.id %}">«{{ g.shop.name }}»</a></span>
+          <a href="{% url good g.good.id %}">{{ g.good.name }}</a> <span class="producer">({{ g.good.producer.name }})</span> &ndash; <span><a href="{% url shop g.shop.id %}">«{{ g.shop.name }}»</a></span>
        </li>
        {% endfor %}
        </ul>
@@ -27,6 +27,8 @@
 {% endblock %}
 
 {% block sidebar %}
+   <h2 class="headline"><a href="{% url catalog_index %}">Перейти в каталог</a></h2>
+
    <h2>Случайный товар</h2>
    <div class="good">{{ random.good.name }} ({{ random.good.producer.name }})</div>
    Можно купить в:
